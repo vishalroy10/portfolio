@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vishal Kumar | Software Engineer</title>
+    <!-- ATS Meta Tags -->
+    <meta name="keywords" content="Software Engineer, Software Developer, Full Stack Developer, Backend Developer, Frontend Developer, Product Engineer, React.js, Next.js, Node.js, Express.js, JavaScript, TypeScript, C, C++, Java, Python, Firebase, Firestore, REST APIs, Axios, Razorpay, Payment Gateway, Authentication, Authorization, Webhooks, Redux, Zustand, Material UI, Tailwind CSS, Git, GitHub, Vercel, Cloudinary, Machine Learning, Scikit-learn, System Design, Software Architecture, Cloud Computing, Performance Optimization, SDLC, API Integration, Production Deployment, Debugging, AI-Assisted Development" />
+    <meta name="description" content="Passionate Full Stack Developer and Startup Founder. Experienced in scalable backend architecture, secure payment systems, cloud infrastructure, and modern frontend development." />
+    
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&family=Space+Grotesk:wght@300;500;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <!-- Custom Cursor -->
+    <div id="cursor"></div>
+
+    <!-- Geometric Loader -->
+    <div id="loader">
+      <div class="loader-content">
+        <div class="spinner"></div>
+        <div class="loading-text">INITIALIZING PORTFOLIO...</div>
+      </div>
+    </div>
+
+    <!-- 3D Canvas Background -->
+    <canvas id="webgl-canvas"></canvas>
+
+    <!-- Sleek Navbar -->
+    <nav id="navbar" class="navbar">
+      <div class="nav-container">
+        <a href="#" class="nav-logo">VK.</a>
+        <div class="nav-links">
+          <a href="#about" class="nav-link">Background</a>
+          <a href="#work" class="nav-link">Deployments</a>
+          <a href="#skills" class="nav-link">Capabilities</a>
+          <a href="#contact" class="nav-btn">Initiate Contact</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Scrollable Content overlay -->
+    <div class="scroll-container">
+      
+      <!-- HERO -->
+      <section class="section hero">
+        <div class="content no-bg">
+          <p class="subtitle fade-up">01. IDENTIFICATION</p>
+          <h1 class="split-text">Vishal Kumar</h1>
+          <h2 class="split-text accent-text">Software Engineer | Full Stack Developer | Startup Founder</h2>
+          <p class="desc fade-up">Passionate Full Stack Developer and Startup Founder with hands-on experience designing, developing, and deploying production-grade web applications.</p>
+          
+          <div class="contact-methods fade-up" style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
+            <a href="#contact" class="btn">Hire Me</a>
+            <a href="mailto:vixal0709@gmail.com" class="btn" style="background: transparent; border: 1px solid var(--text-main); color: var(--text-main);">vixal0709@gmail.com</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section id="about" class="section about">
+        <div class="content left-align compact-card">
+          <p class="subtitle fade-up">02. PROFESSIONAL SUMMARY</p>
+          <h2 class="split-text">Background</h2>
+          <p class="fade-up">Experienced in scalable backend architecture, secure payment systems, cloud infrastructure, REST APIs, authentication, and modern frontend development. Proven ability to take products from concept to deployment while applying software engineering best practices, system design principles, and performance optimization.</p>
+          <p class="fade-up" style="margin-top: 1.5rem;">Strong interest in backend engineering, distributed systems, AI-assisted software development, and cloud-native applications.</p>
+          
+          <h3 class="category-title fade-up" style="margin-top: 2rem;">Languages</h3>
+          <ul class="highlights-list fade-up" style="margin-top: 0.5rem;">
+            <li><strong>English</strong> — Professional Working Proficiency</li>
+            <li><strong>Hindi</strong> — Native Proficiency</li>
+            <li><strong>German</strong> — A2 Level</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- FEATURED DEPLOYMENT -->
+      <section id="work" class="section project-feature">
+        <div class="content right-align compact-card">
+          <p class="subtitle fade-up">03. FEATURED DEPLOYMENT</p>
+          <h2 class="split-text">RentABuddy</h2>
+          <p class="fade-up accent-text" style="font-size: 1.25rem; margin-bottom: 0.5rem;">Founder & Full Stack Developer</p>
+          <p class="fade-up" style="margin-bottom: 1.5rem; font-size: 0.95rem;">Designed and developed a production-ready full-stack social marketplace platform with secure payment processing and cloud-native architecture.</p>
+          
+          <ul class="highlights-list fade-up compact-list">
+            <li>Built scalable full-stack web app using Next.js, TypeScript, Firebase, and Material UI.</li>
+            <li>Integrated Razorpay for payment processing with webhook verification and idempotent transactions.</li>
+            <li>Architected a wallet and ledger system supporting memberships, credits, and refunds.</li>
+            <li>Developed REST APIs and backend services using Firebase Cloud Functions.</li>
+          </ul>
+
+          <div class="skills-grid fade-up" style="margin-top: 1.5rem; margin-bottom: 1.5rem;">
+            <span class="skill-tag mini-tag">Next.js</span>
+            <span class="skill-tag mini-tag">TypeScript</span>
+            <span class="skill-tag mini-tag">Node.js</span>
+            <span class="skill-tag mini-tag">Firebase</span>
+            <span class="skill-tag mini-tag">Razorpay</span>
+            <span class="skill-tag mini-tag">Redux</span>
+          </div>
+
+          <a href="https://rentabuddy.site/" target="_blank" class="btn fade-up" style="width: 100%; text-align: center;">View Live Application ↗</a>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills" class="section skills">
+        <div class="content left-align compact-card">
+          <p class="subtitle fade-up">04. CORE COMPETENCIES</p>
+          <h2 class="split-text">Technical Arsenal</h2>
+          
+          <div class="skill-category fade-up">
+            <h3 class="category-title">Programming & Frontend</h3>
+            <div class="skills-grid">
+              <span class="skill-tag mini-tag">C / C++</span>
+              <span class="skill-tag mini-tag">Java</span>
+              <span class="skill-tag mini-tag">Python</span>
+              <span class="skill-tag mini-tag">JavaScript / TypeScript</span>
+              <span class="skill-tag mini-tag">React.js / Next.js</span>
+            </div>
+          </div>
+
+          <div class="skill-category fade-up">
+            <h3 class="category-title">Backend, Cloud & APIs</h3>
+            <div class="skills-grid">
+              <span class="skill-tag mini-tag">Node.js / Express.js</span>
+              <span class="skill-tag mini-tag">Firebase / Firestore</span>
+              <span class="skill-tag mini-tag">REST APIs / Webhooks</span>
+              <span class="skill-tag mini-tag">Razorpay</span>
+            </div>
+          </div>
+
+          <div class="skill-category fade-up">
+            <h3 class="category-title">Engineering & ML</h3>
+            <div class="skills-grid">
+              <span class="skill-tag mini-tag">System Design</span>
+              <span class="skill-tag mini-tag">Scalable Architecture</span>
+              <span class="skill-tag mini-tag">Scikit-learn</span>
+            </div>
+          </div>
+          
+          <div class="skill-category fade-up">
+            <h3 class="category-title">Developer Tools</h3>
+            <div class="skills-grid">
+              <span class="skill-tag mini-tag">Git / GitHub</span>
+              <span class="skill-tag mini-tag">VS Code</span>
+              <span class="skill-tag mini-tag">Postman</span>
+              <span class="skill-tag mini-tag">Playwright</span>
+            </div>
+          </div>
+
+          <div class="skill-category fade-up ai-tools">
+            <h3 class="category-title">AI-Assisted Development Tools</h3>
+            <div class="skills-grid">
+              <span class="skill-tag mini-tag">OpenAI Codex</span>
+              <span class="skill-tag mini-tag">Google Gemini</span>
+              <span class="skill-tag mini-tag">Cursor AI</span>
+              <span class="skill-tag mini-tag">GitHub Copilot</span>
+              <span class="skill-tag mini-tag">Bolt.new</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ADDITIONAL REPOSITORIES -->
+      <section class="section projects">
+        <div class="content right-align compact-card">
+          <p class="subtitle fade-up">05. OPEN SOURCE & SYSTEMS</p>
+          <h2 class="split-text">Additional Architecture</h2>
+          <p class="fade-up" style="margin-bottom: 2rem; font-size: 0.95rem;">Actively expanding public repositories to feature Express.js backend services, Machine Learning pipelines, and CI/CD oriented architectures.</p>
+          <div class="projects-list">
+            <a href="https://github.com/vishalroy10/connectfrnd" target="_blank" class="project-card stagger-card">
+              <div class="card-inner">
+                <h3>connectfrnd</h3>
+                <p>Social connectivity module and matching system.</p>
+                <span class="link-label">View on GitHub ↗</span>
+              </div>
+            </a>
+            <a href="https://github.com/vishalroy10/temperature-switch" target="_blank" class="project-card stagger-card">
+              <div class="card-inner">
+                <h3>temperature-switch</h3>
+                <p>Java Android Application interface.</p>
+                <span class="link-label">View on GitHub ↗</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="section contact">
+        <div class="content center-align no-bg">
+          <p class="subtitle fade-up">06. COMMUNICATIONS</p>
+          <h2 class="split-text">Initiate Contact</h2>
+          <p class="fade-up" style="margin-bottom: 2rem;">Ready for deployment on your next major project. Available for Software Engineering, Full Stack Development, and Product Engineering roles.</p>
+          
+          <div class="contact-methods fade-up" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="mailto:vixal0709@gmail.com" class="btn">vixal0709@gmail.com</a>
+            <a href="tel:+919472248159" class="btn" style="background: transparent; border: 1px solid var(--text-main); color: var(--text-main);">+91 9472248159</a>
+          </div>
+
+          <div class="social-links fade-up">
+            <a href="https://github.com/vishalroy10" target="_blank">GitHub Repository</a>
+            <span style="color: var(--glass-border); margin: 0 1rem;">|</span>
+            <a href="https://rentabuddy.site" target="_blank">RentABuddy Live</a>
+          </div>
+        </div>
+      </section>
+      
+      <!-- ATS KEYWORDS -->
+      <div style="opacity: 0.05; font-size: 8px; text-align: justify; padding: 2rem; color: #fff;">
+        ATS Keywords: Software Engineer • Software Developer • Full Stack Developer • Backend Developer • Frontend Developer • Product Engineer • React.js • Next.js • Node.js • Express.js • JavaScript • TypeScript • C • C++ • Java • Python • Firebase • Firestore • REST APIs • Axios • Razorpay • Payment Gateway • Authentication • Authorization • Webhooks • Redux • Zustand • Material UI • Tailwind CSS • Git • GitHub • Vercel • Cloudinary • Machine Learning • Scikit-learn • System Design • Software Architecture • Cloud Computing • Performance Optimization • SDLC • API Integration • Production Deployment • Debugging • AI-Assisted Development
+      </div>
+
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,0 +1,623 @@
+:root {
+  --bg-color: #050419; /* Deep tech blue/black */
+  --text-main: #f0f0f5;
+  --text-muted: #8b92a5;
+  --accent: #00f0ff; /* Electric cyan */
+  --accent-secondary: #ff3366; /* Neon Coral for tracing lines later */
+  --glass-bg: rgba(5, 4, 25, 0.6);
+  --glass-border: rgba(255, 255, 255, 0.05);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Cursor - hide on touch devices */
+#cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent);
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  mix-blend-mode: screen;
+  transition: width 0.2s, height 0.2s;
+}
+@media (pointer: coarse) {
+  #cursor {
+    display: none;
+  }
+}
+@media (pointer: fine) {
+  * {
+    cursor: none;
+  }
+}
+
+/* Loader */
+#loader {
+  position: fixed;
+  inset: 0;
+  background: var(--bg-color);
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--accent);
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.loader-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 2px solid rgba(0, 240, 255, 0.2);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+.loading-text {
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+}
+
+/* 3D Canvas */
+#webgl-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* Lenis scroll container */
+.scroll-container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+.section {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 5rem 10vw; /* Added vertical padding for better spacing */
+  position: relative;
+}
+
+/* Content styling */
+.content {
+  max-width: 650px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 4rem;
+  border-radius: 1px; /* Sharp corners for brutalist tech look */
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  width: 100%; /* Ensure content fills max-width smoothly */
+}
+
+.no-bg {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+}
+
+.right-align { margin-left: auto; margin-right: 0; }
+.left-align { margin-right: auto; margin-left: 0; }
+.center-align { margin: 0 auto; text-align: center; }
+
+h1, h2, .accent-text {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+h1 {
+  font-size: 5rem;
+  font-weight: 900;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+}
+
+h2 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  letter-spacing: -1px;
+}
+
+.accent-text {
+  color: var(--accent);
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+p {
+  font-size: 1.15rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.subtitle {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+/* Skills */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.skill-tag {
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--glass-border);
+  color: var(--text-main);
+  border-radius: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+  font-family: 'Space Grotesk', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.skill-tag:hover {
+  background: var(--accent);
+  color: #000;
+  border-color: var(--accent);
+  transform: translateY(-4px);
+}
+
+.course-info {
+  font-size: 0.9rem;
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
+}
+
+/* Projects */
+.projects-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.project-card {
+  display: block;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--glass-border);
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card-inner {
+  padding: 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.1), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  z-index: 1;
+}
+
+.project-card:hover::before {
+  transform: translateX(100%);
+}
+
+.project-card:hover {
+  border-color: rgba(0, 240, 255, 0.4);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.project-card h3 {
+  color: #fff;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.project-card p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.link-label {
+  font-size: 0.75rem;
+  color: var(--accent);
+  font-weight: 700;
+  font-family: 'Space Grotesk', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Contact */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1rem;
+  padding: 1.25rem 2.5rem;
+  background: var(--text-main);
+  color: var(--bg-color);
+  text-decoration: none;
+  font-weight: 900;
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: 1px;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn:hover {
+  background: var(--accent);
+  transform: translateY(-5px);
+}
+
+.social-links {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.social-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border-bottom: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* SplitType & GSAP utilities */
+.line {
+  overflow: hidden; /* For split-type text reveal */
+}
+
+/* Additional Resume Styles */
+.highlights-list {
+  margin-top: 1.5rem;
+  padding-left: 1.5rem;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+.highlights-list li {
+  margin-bottom: 0.5rem;
+}
+
+.skill-category {
+  margin-bottom: 2.5rem;
+}
+
+.category-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.25rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+/* =========================================
+   RESPONSIVE MEDIA QUERIES
+   ========================================= */
+
+/* Tablets & Small Laptops */
+@media screen and (max-width: 1024px) {
+  h1 { font-size: 4rem; }
+  h2 { font-size: 2.5rem; }
+  .accent-text { font-size: 2rem; }
+  .section { padding: 4rem 5vw; }
+  .content { padding: 3rem; }
+}
+
+/* Mobile Devices */
+@media screen and (max-width: 768px) {
+  h1 { 
+    font-size: 3rem; 
+    letter-spacing: -1px;
+  }
+  h2 { font-size: 2rem; }
+  .accent-text { font-size: 1.5rem; }
+  p { font-size: 1rem; }
+  
+  .section {
+    padding: 3rem 5vw;
+    /* Center align sections on mobile for better flow */
+    justify-content: center;
+  }
+
+  .content {
+    padding: 2rem 1.5rem;
+    margin: 0 !important; /* Reset left/right alignment on mobile */
+  }
+
+  .skills-grid {
+    gap: 0.5rem;
+  }
+
+  .skill-tag {
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+  }
+
+  .card-inner {
+    padding: 1.5rem;
+  }
+
+  .btn {
+    padding: 1rem 1.5rem;
+    font-size: 0.9rem;
+    width: 100%; /* Full width buttons on mobile */
+  }
+  
+  .contact-methods {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .social-links {
+    margin-top: 2rem;
+  }
+
+  /* Reset alignment for better readability on narrow screens */
+  .right-align, .left-align { 
+    text-align: left;
+  }
+}
+
+/* Very Small Mobile */
+@media screen and (max-width: 480px) {
+  h1 { font-size: 2.5rem; }
+  .subtitle { font-size: 0.75rem; }
+}
+
+
+/* =========================================
+   NAVBAR STYLES
+   ========================================= */
+.navbar {
+  position: fixed;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 800px;
+  padding: 1rem 2rem;
+  z-index: 5000;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  background: transparent;
+  border-radius: 50px;
+  border: 1px solid transparent;
+}
+
+.navbar.scrolled {
+  background: rgba(5, 4, 25, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  top: 1rem;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.nav-logo {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: -1px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.nav-link {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #fff;
+}
+
+.nav-btn {
+  padding: 0.75rem 1.5rem;
+  background: var(--text-main);
+  color: var(--bg-color);
+  text-decoration: none;
+  font-weight: 700;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+.nav-btn:hover {
+  background: var(--accent);
+}
+
+@media screen and (max-width: 768px) {
+  .nav-links { display: none; }
+}
+
+/* =========================================
+   COMPACT CARDS
+   ========================================= */
+.compact-card {
+  max-width: 500px; /* Reduced from 650px */
+  padding: 3rem; /* Reduced from 4rem */
+}
+
+.mini-tag {
+  padding: 0.5rem 1rem;
+  font-size: 0.75rem;
+}
+
+.compact-list {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.ai-tools {
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
+  margin-top: 2rem;
+}
+
+
+
+/* Added Glow Effect to Cards */
+.compact-card {
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 40px rgba(0, 240, 255, 0.05);
+  transition: box-shadow 0.5s ease;
+}
+.compact-card:hover {
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8), 0 0 60px rgba(0, 240, 255, 0.15);
+}
+
+
+
+/* =========================================
+   CARD HOVER EFFECTS OVERRIDES
+   ========================================= */
+.compact-card {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Reset the previous shadow to make it smoother */
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(0, 240, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Moving Glass Glare Effect */
+.compact-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.08), transparent);
+  transform: skewX(-20deg);
+  transition: all 0.8s ease;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Make sure content sits above the glare */
+.compact-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.compact-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  box-shadow: 0 30px 60px rgba(0,0,0,0.9), 0 0 60px rgba(0, 240, 255, 0.15);
+}
+
+.compact-card:hover::before {
+  left: 150%;
+}
+
+/* Project Card Hover Enhancement */
+.project-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 51, 102, 0.5); /* Coral glow for contrast */
+  box-shadow: 0 10px 30px rgba(255, 51, 102, 0.1);
+}
+
+.project-card:hover .link-label {
+  color: #ff3366;
+}
+
+
+
+/* =========================================
+   CARD HIT FLASH EFFECT (Triggered by 3D Scene)
+   ========================================= */
+.hit-flash {
+  /* An intense, momentary burst of energy when the pulse arrives */
+  box-shadow: 0 0 100px rgba(0, 240, 255, 0.8), inset 0 0 40px rgba(0, 240, 255, 0.2) !important;
+  border-color: rgba(0, 240, 255, 1) !important;
+  transform: scale(1.03) !important;
+  transition: all 0.15s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.hit-flash * {
+  /* Momentarily brighten the text */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  transition: text-shadow 0.15s ease;
+}
+
