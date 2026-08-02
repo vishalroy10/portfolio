@@ -621,3 +621,76 @@ p {
   transition: text-shadow 0.15s ease;
 }
 
+
+
+/* =========================================
+   PREMIUM UPGRADES CSS
+   ========================================= */
+
+/* Glassmorphism Form */
+.glass-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.form-group {
+  width: 100%;
+}
+
+.glass-input {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.glass-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.glass-input:focus {
+  outline: none;
+  background: rgba(0, 240, 255, 0.05);
+  border-color: rgba(0, 240, 255, 0.5);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+}
+
+textarea.glass-input {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Flashlight Text */
+.flashlight-text {
+  position: relative;
+  display: inline-block;
+}
+
+.flashlight-text::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #00f0ff;
+  -webkit-mask-image: radial-gradient(circle 80px at var(--mouse-x, 50%) var(--mouse-y, 50%), black 0%, transparent 100%);
+  mask-image: radial-gradient(circle 80px at var(--mouse-x, 50%) var(--mouse-y, 50%), black 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.flashlight-text:hover::after {
+  opacity: 1;
+}
+
+

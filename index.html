@@ -49,7 +49,7 @@
       <section class="section hero">
         <div class="content no-bg">
           <p class="subtitle fade-up">01. IDENTIFICATION</p>
-          <h1 class="split-text">Vishal Kumar</h1>
+          <h1 class="split-text flashlight-text" data-text="Vishal Kumar" id="flashlight-hero">Vishal Kumar</h1>
           <h2 class="split-text accent-text">Software Engineer | Full Stack Developer | Startup Founder</h2>
           <p class="desc fade-up">Passionate Full Stack Developer and Startup Founder with hands-on experience designing, developing, and deploying production-grade web applications.</p>
           
@@ -192,17 +192,36 @@
 
       <!-- CONTACT -->
       <section id="contact" class="section contact">
-        <div class="content center-align no-bg">
+        <div class="content center-align compact-card" style="max-width: 600px;">
           <p class="subtitle fade-up">06. COMMUNICATIONS</p>
           <h2 class="split-text">Initiate Contact</h2>
-          <p class="fade-up" style="margin-bottom: 2rem;">Ready for deployment on your next major project. Available for Software Engineering, Full Stack Development, and Product Engineering roles.</p>
+          <p class="fade-up" style="margin-bottom: 2rem;">Ready for deployment on your next major project. Send a secure transmission directly to my inbox.</p>
           
-          <div class="contact-methods fade-up" style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-            <a href="mailto:vixal0709@gmail.com" class="btn">vixal0709@gmail.com</a>
-            <a href="tel:+919472248159" class="btn" style="background: transparent; border: 1px solid var(--text-main); color: var(--text-main);">+91 9472248159</a>
+          <form action="https://api.web3forms.com/submit" method="POST" class="glass-form fade-up">
+            <!-- Replace with your actual Web3Forms access key -->
+            <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+            <input type="hidden" name="subject" value="New Inquiry from Portfolio">
+            
+            <div class="form-group">
+              <input type="text" name="name" placeholder="Name / Organization" required class="glass-input">
+            </div>
+            <div class="form-group">
+              <input type="email" name="email" placeholder="Email Address" required class="glass-input">
+            </div>
+            <div class="form-group">
+              <textarea name="message" placeholder="Transmission Payload (Message)..." rows="4" required class="glass-input"></textarea>
+            </div>
+            
+            <button type="submit" class="btn submit-btn" style="width: 100%; text-align: center;">Transmit Message</button>
+          </form>
+
+          <div class="social-links fade-up" style="margin-top: 2rem;">
+            <a href="mailto:vixal0709@gmail.com">vixal0709@gmail.com</a>
+            <span style="color: var(--glass-border); margin: 0 1rem;">|</span>
+            <a href="tel:+919472248159">+91 9472248159</a>
           </div>
 
-          <div class="social-links fade-up">
+          <div class="social-links fade-up" style="margin-top: 1rem;">
             <a href="https://github.com/vishalroy10" target="_blank">GitHub Repository</a>
             <span style="color: var(--glass-border); margin: 0 1rem;">|</span>
             <a href="https://rentabuddy.site" target="_blank">RentABuddy Live</a>

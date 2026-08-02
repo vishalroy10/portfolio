@@ -37,7 +37,7 @@ window.addEventListener('scroll', () => {
 });
 
 // ==========================================
-// 2. CUSTOM CURSOR
+// 2. CUSTOM CURSOR & FLASHLIGHT TEXT
 // ==========================================
 const cursor = document.getElementById('cursor');
 if (cursor) {
@@ -50,10 +50,21 @@ if (cursor) {
     });
   });
 
-  const links = document.querySelectorAll('a, .skill-tag');
+  const links = document.querySelectorAll('a, .skill-tag, button, input, textarea');
   links.forEach(link => {
     link.addEventListener('mouseenter', () => gsap.to(cursor, { scale: 2.5, backgroundColor: '#ff3366' }));
     link.addEventListener('mouseleave', () => gsap.to(cursor, { scale: 1, backgroundColor: '#00f0ff' }));
+  });
+}
+
+const flashlightText = document.getElementById('flashlight-hero');
+if (flashlightText) {
+  flashlightText.addEventListener('mousemove', (e) => {
+    const rect = flashlightText.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * 100;
+    const y = ((e.clientY - rect.top) / rect.height) * 100;
+    flashlightText.style.setProperty('--mouse-x', `${x}%`);
+    flashlightText.style.setProperty('--mouse-y', `${y}%`);
   });
 }
 
@@ -233,13 +244,37 @@ gsap.to(scrollState, {
 camera.position.set(0, 0, 35); // Pull back to see the vertical wall
 
 // ==========================================
-// 5. ANIMATION LOOP
+// 5. ANIMATION LOOP & PERFORMANCE OPTIMIZER
 // ==========================================
 const clock = new THREE.Clock();
 let lastScrollProgress = 0;
 
+let frameCount = 0;
+let lastFpsTime = performance.now();
+let isLowPerf = false;
+
 function animate() {
   const elapsedTime = clock.getElapsedTime();
+
+  // -----------------------------------------
+  // PERFORMANCE OPTIMIZER
+  // -----------------------------------------
+  frameCount++;
+  const currentTime = performance.now();
+  if (currentTime - lastFpsTime >= 1000) {
+    const fps = (frameCount * 1000) / (currentTime - lastFpsTime);
+    if (fps < 30 && !isLowPerf) {
+      isLowPerf = true;
+      bloomPass.strength = 0.5; // Heavily reduce bloom rendering cost
+      particles.visible = false; // Hide 2000 particles
+    } else if (fps > 55 && isLowPerf) {
+      isLowPerf = false;
+      bloomPass.strength = 2.5; // Restore bloom
+      particles.visible = true;
+    }
+    frameCount = 0;
+    lastFpsTime = currentTime;
+  }
 
   const p = Math.max(0, Math.min(scrollState.progress, 0.999)); 
   const scrollVelocity = Math.abs(p - lastScrollProgress);
